@@ -4,10 +4,19 @@ public class BubbleSortStep1 {
 
         int[] numbers = {5, 3, 8, 1};
 
-        System.out.println("Before:");
+        System.out.println("Before sorting:");
         printArray(numbers);
 
-        // Bubble Sort
+        // Call Bubble Sort METHOD
+        bubbleSort(numbers);
+
+        System.out.println("After sorting:");
+        printArray(numbers);
+    }
+
+    // Bubble Sort method
+    public static void bubbleSort(int[] numbers) {
+
         for (int i = 0; i < numbers.length - 1; i++) {
             for (int j = 0; j < numbers.length - 1; j++) {
 
@@ -18,11 +27,9 @@ public class BubbleSortStep1 {
                 }
             }
         }
-
-        System.out.println("After:");
-        printArray(numbers);
     }
 
+    // Helper method to print the array
     public static void printArray(int[] array) {
         for (int value : array) {
             System.out.print(value + " ");
