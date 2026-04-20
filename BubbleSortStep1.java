@@ -4,6 +4,7 @@ public class BubbleSortStep1 {
 
         int[] numbers = {5, 3, 8, 1};
 
+        // test commit
         System.out.println("Before sorting:");
         printArray(numbers);
 
