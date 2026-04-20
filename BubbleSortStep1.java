@@ -7,8 +7,10 @@ public class BubbleSortStep1 {
         System.out.println("Before sorting:");
         printArray(numbers);
 
-        // Call Bubble Sort METHOD
-        bubbleSort(numbers);
+        
+        //bubbleSort(numbers);
+        selectionSort(numbers);
+
 
         System.out.println("After sorting:");
         printArray(numbers);
@@ -28,7 +30,28 @@ public class BubbleSortStep1 {
             }
         }
     }
+// Selection Sort method
+public static void selectionSort(int[] numbers) {
 
+    int n = numbers.length;
+
+    for (int i = 0; i < n - 1; i++) {
+
+        int minIndex = i;
+
+        // Find the index of the smallest element
+        for (int j = i + 1; j < n; j++) {
+            if (numbers[j] < numbers[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        // Swap the smallest element with the current position
+        int temp = numbers[minIndex];
+        numbers[minIndex] = numbers[i];
+        numbers[i] = temp;
+    }
+}
     // Helper method to print the array
     public static void printArray(int[] array) {
         for (int value : array) {
