@@ -2,24 +2,24 @@ public class BubbleSortStep1 {
 
     public static void main(String[] args) {
 
-        int[] numbers = {5, 3, 8, 1};
+        int[] numbers = {5, 3, 8, 1, 7, 11, 25, 99};
 
         // test commit
-        System.out.println("Before sorting:");
+        System.out.println("Before:");
         printArray(numbers);
 
         
         //bubbleSort(numbers);
-        selectionSort(numbers);
+        //selectionSort(numbers);
+        insertionSort(numbers);
 
 
-        System.out.println("After sorting:");
+        System.out.println("After:");
         printArray(numbers);
     }
 
     // Bubble Sort method
     public static void bubbleSort(int[] numbers) {
-
         for (int i = 0; i < numbers.length - 1; i++) {
             for (int j = 0; j < numbers.length - 1; j++) {
 
@@ -51,6 +51,23 @@ public static void selectionSort(int[] numbers) {
         int temp = numbers[minIndex];
         numbers[minIndex] = numbers[i];
         numbers[i] = temp;
+    }
+}
+// Insertion Sort method
+public static void insertionSort(int[] numbers) {
+
+    for (int i = 1; i < numbers.length; i++) {
+
+        int key = numbers[i];
+        int j = i - 1;
+
+        // Move elements greater than key to one position ahead
+        while (j >= 0 && numbers[j] > key) {
+            numbers[j + 1] = numbers[j];
+            j--;
+        }
+
+        numbers[j + 1] = key;
     }
 }
     // Helper method to print the array
