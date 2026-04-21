@@ -11,7 +11,9 @@ public class BubbleSortStep1 {
         
         //bubbleSort(numbers);
         //selectionSort(numbers);
-        insertionSort(numbers);
+        //insertionSort(numbers);
+        mergeSort(numbers);
+
 
 
         System.out.println("After:");
@@ -70,6 +72,54 @@ public static void insertionSort(int[] numbers) {
         numbers[j + 1] = key;
     }
 }
+
+// Merge Sort main method
+public static void mergeSort(int[] numbers) {
+    if (numbers.length < 2) {
+        return; // base case
+    }
+
+    int mid = numbers.length / 2;
+
+    int[] left = new int[mid];
+    int[] right = new int[numbers.length - mid];
+
+    for (int i = 0; i < mid; i++) {
+        left[i] = numbers[i];
+    }
+
+    for (int i = mid; i < numbers.length; i++) {
+        right[i - mid] = numbers[i];
+    }
+
+    mergeSort(left);
+    mergeSort(right);
+
+    merge(numbers, left, right);
+}
+// Merge helper method
+private static void merge(int[] numbers, int[] left, int[] right) {
+
+    int i = 0, j = 0, k = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) {
+            numbers[k++] = left[i++];
+        } else {
+            numbers[k++] = right[j++];
+        }
+    }
+
+    while (i < left.length) {
+        numbers[k++] = left[i++];
+    }
+
+    while (j < right.length) {
+        numbers[k++] = right[j++];
+    }
+}
+
+
     // Helper method to print the array
     public static void printArray(int[] array) {
         for (int value : array) {
