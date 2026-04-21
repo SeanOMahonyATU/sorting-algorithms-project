@@ -12,7 +12,8 @@ public class BubbleSortStep1 {
         //bubbleSort(numbers);
         //selectionSort(numbers);
         //insertionSort(numbers);
-        mergeSort(numbers);
+        //mergeSort(numbers);
+        countingSort(numbers);
 
 
 
@@ -118,6 +119,35 @@ private static void merge(int[] numbers, int[] left, int[] right) {
         numbers[k++] = right[j++];
     }
 }
+// Counting Sort method (non-comparison sort)
+public static void countingSort(int[] numbers) {
+
+    // Find the maximum value in the array
+    int max = numbers[0];
+    for (int num : numbers) {
+        if (num > max) {
+            max = num;
+        }
+    }
+
+    // Create count array
+    int[] count = new int[max + 1];
+
+    // Count occurrences of each number
+    for (int num : numbers) {
+        count[num]++;
+    }
+
+    // Rebuild the sorted array
+    int index = 0;
+    for (int i = 0; i < count.length; i++) {
+        while (count[i] > 0) {
+            numbers[index++] = i;
+            count[i]--;
+        }
+    }
+}
+
 
 
     // Helper method to print the array
