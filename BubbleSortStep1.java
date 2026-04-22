@@ -1,25 +1,45 @@
+
+
 public class BubbleSortStep1 {
 
     public static void main(String[] args) {
 
-        int[] numbers = {5, 3, 8, 1, 7, 11, 25, 99};
+    int[] sizes = {100, 500, 1000, 5000, 10000};
+    int runs = 10;
+    
 
-        // test commit
-        System.out.println("Before:");
-        printArray(numbers);
+    System.out.printf("%-8s %-10s %-10s %-10s %-10s %-10s%n",
+            "N", "Bubble", "Select", "Insert", "Merge", "Count");
 
-        
-        //bubbleSort(numbers);
-        //selectionSort(numbers);
-        //insertionSort(numbers);
-        //mergeSort(numbers);
-        countingSort(numbers);
+    for (int size : sizes) {
 
+        long bubbleTotal = 0;
+        long selectionTotal = 0;
+        long insertionTotal = 0;
+        long mergeTotal = 0;
+        long countingTotal = 0;
 
+        for (int i = 0; i < runs; i++) {
 
-        System.out.println("After:");
-        printArray(numbers);
+            int[] base = randomArray(size);
+
+            bubbleTotal += timeSort(() -> bubbleSort(base.clone()));
+            selectionTotal += timeSort(() -> selectionSort(base.clone()));
+            insertionTotal += timeSort(() -> insertionSort(base.clone()));
+            mergeTotal += timeSort(() -> mergeSort(base.clone()));
+            countingTotal += timeSort(() -> countingSort(base.clone()));
+        }
+
+        System.out.printf("%-8d %-10.3f %-10.3f %-10.3f %-10.3f %-10.3f%n",
+                size,
+                bubbleTotal / (double) runs,
+                selectionTotal / (double) runs,
+                insertionTotal / (double) runs,
+                mergeTotal / (double) runs,
+                countingTotal / (double) runs
+        );
     }
+}
 
     // Bubble Sort method
     public static void bubbleSort(int[] numbers) {
@@ -148,7 +168,22 @@ public static void countingSort(int[] numbers) {
     }
 }
 
+// Generates an array of n random integers between 0 and 99
+public static int[] randomArray(int n) {
+    int[] array = new int[n];
+    for (int i = 0; i < n; i++) {
+        array[i] = (int)(Math.random() * 100);
+    }
+    return array;
+}
 
+// Measures execution time of a sorting method (in milliseconds)
+public static double timeSort(Runnable sort) {
+    long startTime = System.nanoTime();
+    sort.run();
+    long endTime = System.nanoTime();
+    return (endTime - startTime) / 1_000_000.0;
+}
 
     // Helper method to print the array
     public static void printArray(int[] array) {
