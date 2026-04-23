@@ -4,7 +4,7 @@ public class BubbleSortStep1 {
 
     public static void main(String[] args) {
 
-    int[] sizes = {100, 500, 1000, 5000, 10000};
+    int[] sizes = {15342, 487, 19201, 8347, 120, 17654, 9021, 45, 19998, 6310};
     int runs = 10;
     
 
